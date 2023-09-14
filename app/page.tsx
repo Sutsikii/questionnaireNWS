@@ -157,7 +157,7 @@ const Home: React.FC = () => {
           <div className="text-center flex flex-col items-center">  {/* Ici, j'ai ajouté flex et items-center */}
             <h1 className="text-4xl mb-4">Votre spécialité recommandée est : {getHighestScoreCategory()}</h1>
             <div className="flex justify-center"> {/* Ici, j'ai ajouté flex et justify-center */}
-              <Image src={getImage()} alt="Category Logo" className="w-20 h-20 mb-4" />
+              <Image src={getImage()} alt="Category Logo" className="w-40 h-40 mb-4" />
             </div>
             <button onClick={resetQuiz} className="bg-[#fec800] hover:bg-[#fec700da] text-black font-bold py-2 px-4 rounded">
               Réinitialiser le questionnaire
