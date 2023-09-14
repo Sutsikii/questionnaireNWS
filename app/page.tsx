@@ -8,6 +8,7 @@ import marketingLogo from '@/app/images/spe/MD.svg';
 import designLogo from '@/app/images/spe/CG.svg';
 import cmLogo from '@/app/images/spe/CD_3.svg';
 import Image from 'next/image';
+import Footer from './components/Footer';
 
 interface Score {
   dev?: number;
@@ -150,35 +151,39 @@ const Home: React.FC = () => {
   }
 
   return (
-    <>
-      <Navbar />
-      <div className="container mx-auto p-6 flex flex-col justify-center items-center">
-        {done ? (
-          <div className="text-center flex flex-col items-center">  {/* Ici, j'ai ajouté flex et items-center */}
-            <h1 className="text-4xl mb-4">Votre spécialité recommandée est : {getHighestScoreCategory()}</h1>
-            <div className="flex justify-center"> {/* Ici, j'ai ajouté flex et justify-center */}
-              <Image src={getImage()} alt="Category Logo" className="w-40 h-40 mb-4" />
-            </div>
-            <button onClick={resetQuiz} className="bg-[#fec800] hover:bg-[#fec700da] text-black font-bold py-2 px-4 rounded">
-              Réinitialiser le questionnaire
-            </button>
+<>
+  <div className='min-h-screen flex flex-col'>
+    <Navbar />
+    <div className="flex-grow container mx-auto p-6 flex flex-col justify-center items-center"> {/* Ajout de flex-grow ici */}
+      {done ? (
+        <div className="text-center flex flex-col items-center">
+          <h1 className="text-4xl mb-4">Votre spécialité recommandée est : {getHighestScoreCategory()}</h1>
+          <div className="flex justify-center">
+            <Image src={getImage()} alt="Category Logo" className="w-40 h-40 mb-4" />
           </div>
-        ) : (
-          <div>
-            <h1 className="text-2xl mb-4">{questions[currentQuestion].question}</h1>
-            <ul className="space-y-4">
-              {questions[currentQuestion].answers.map((answer, index) => (
-                <li key={index} 
-                    onClick={() => handleClick(answer.score)} 
-                    className="cursor-pointer text-white bg-[#e94a34] hover:bg-[#e94934c9] rounded py-2 px-4">
-                  {answer.text}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </>
+          <button onClick={resetQuiz} className="bg-[#fec800] hover:bg-[#fec700da] text-black font-bold py-2 px-4 rounded">
+            Réinitialiser le questionnaire
+          </button>
+        </div>
+      ) : (
+        <div>
+          <h1 className="text-2xl mb-4">{questions[currentQuestion].question}</h1>
+          <ul className="space-y-4">
+            {questions[currentQuestion].answers.map((answer, index) => (
+              <li key={index} 
+                  onClick={() => handleClick(answer.score)} 
+                  className="cursor-pointer text-white bg-[#e94a34] hover:bg-[#e94934c9] rounded py-2 px-4">
+                {answer.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+    <Footer />
+  </div>
+</>
+
   );  
 }
 
